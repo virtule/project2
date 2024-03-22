@@ -1,10 +1,6 @@
 ﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 -- Link to schema: https://app.quickdatabasediagrams.com/#/d/nOEKr2
--- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
-
--- Modify this code to update the DB schema diagram.
--- To reset the sample schema, replace everything with
--- two dots ('..' - without quotes).
+DROP TABLE IF EXISTS Category, Subcategory, Campaign, Contacts;
 
 CREATE TABLE "Category" (
     "category_id" string   NOT NULL,
@@ -14,6 +10,8 @@ CREATE TABLE "Category" (
      )
 );
 
+SELECT * FROM Category;
+
 CREATE TABLE "Subcategory" (
     "subcategory_id" string   NOT NULL,
     "subcategory" varchar   NOT NULL,
@@ -21,6 +19,8 @@ CREATE TABLE "Subcategory" (
         "subcategory_id"
      )
 );
+
+SELECT * FROM Subcategory;
 
 CREATE TABLE "Campaign" (
     "cf_id" int   NOT NULL,
@@ -42,6 +42,8 @@ CREATE TABLE "Campaign" (
      )
 );
 
+SELECT * FROM Campaign
+
 CREATE TABLE "Contacts" (
     "contact_id" int   NOT NULL,
     "first_name" varchar   NOT NULL,
@@ -52,6 +54,8 @@ CREATE TABLE "Contacts" (
      )
 );
 
+SELECT * FROM Contacts
+
 ALTER TABLE "Category" ADD CONSTRAINT "fk_Category_category_id" FOREIGN KEY("category_id")
 REFERENCES "Campaign" ("category_id");
 
@@ -60,4 +64,3 @@ REFERENCES "Campaign" ("subcategory_id");
 
 ALTER TABLE "Contacts" ADD CONSTRAINT "fk_Contacts_contact_id" FOREIGN KEY("contact_id")
 REFERENCES "Campaign" ("contact_id");
-
